@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>my first bootstrap</title>
+    <title>My Amazing Tutorial</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     
     <style>
@@ -35,17 +35,26 @@
   <body>
     <h1 class="logo_option"><a href="main.html" class="hover_none" style="color: navajowhite;">tutorial</a></h1>
     
-    
     <div class="menu_and_main">
         <ol class="category">
-            <li><a href="a.html" class="hover_none">a.html</a></li>
-            <li><a href="test.html" class="hover_none">test.html</a></li>
+            <li onclick="fetchairticle('ajax')">Ajax</li>
+            <li onclick="fetchairticle('nosql')">NoSQL</li>
         </ol>
-        <div>여기는 main</div>
+        <article>
+        </article>
     </div>
     
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script>
+      function fetchairticle(name){ // article부분 fetch api
+        fetch(name).then(function(res){
+          res.text().then(function(text){
+            document.querySelector('article').innerText = text;
+          })
+        })
+      }
+    </script>
   </body>
 </html>

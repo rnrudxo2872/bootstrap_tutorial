@@ -36,9 +36,8 @@
     <h1 class="logo_option"><a href="main.html" class="hover_none" style="color: navajowhite;">tutorial</a></h1>
     
     <div class="menu_and_main">
-        <ol class="category">
-            <li onclick="fetchairticle('ajax')">Ajax</li>
-            <li onclick="fetchairticle('nosql')">NoSQL</li>
+        <ol id = "main_list" class="category">
+          
         </ol>
         <article>
         </article>
@@ -51,10 +50,32 @@
       function fetchairticle(name){ // article부분 fetch api
         fetch(name).then(function(res){
           res.text().then(function(text){
-            document.querySelector('article').innerText = text;
+            document.querySelector('article').innerHTML = text;
           })
         })
       }
+      if(location.hash){
+        fetchairticle(location.hash.substr(2)); // hash and bang remove
+      }else{
+        fetchairticle('init');
+      }
+      fetch('list').then(function(res){ //list 파일에서 읽어온다.
+          res.text().then(function(text){
+            var items = text.split(',');
+        
+      var i = 0;
+      var tag = "";
+      while(i < items.length){
+        var item = items[i];
+        item = item.trim();
+        tag += '<li><a href="#!' + item + '" onclick="fetchairticle(\'' + item + '\')">' + item + '</a></li>';
+       i++;
+      }
+            document.querySelector('#main_list').innerHTML = tag;
+          })
+        })
+        
+
     </script>
   </body>
 </html>

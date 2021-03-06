@@ -1,6 +1,6 @@
 var http = require("http");
 var fs = require("fs");
-var app = http.createServer(function(req,res) {
+var app = http.createServer(function(req,res) { //test용 서버
     var url = req.url;
     if(url == '/'){
         url = '/main.html';
